@@ -1,21 +1,66 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Version>1.0.0</Version>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Obafemi Bankole</Authors>
+    <ContentTargetFolders>.</ContentTargetFolders>
+    <Product>SampleStarterKit</Product>
+    <PackageId>SampleStarterKit</PackageId>
+    <Title>SampleStarterKit</Title>
+    <Description>SampleStarterKit for Umbraco</Description>
+    <PackageProjectUrl>https://github.com/prjseal/clean-Starter-Kit-for-Umbraco-v9</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageIconUrl>https://github.com/prjseal/clean-Starter-Kit-for-Umbraco-v9/blob/master/images/logo.png?raw=true</PackageIconUrl>
+    <RepositoryUrl>https://github.com/prjseal/clean-Starter-Kit-for-Umbraco-v9</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>umbraco;umbraco-marketplace;clean;starter;kit;starterkit</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Migrations\package.zip" />
-  </ItemGroup>
+    <None Include="build\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>buildTransitive</PackagePath>
+    </None>
 
-  <ItemGroup>
+    <Content Include="wwwroot\**\*.*">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+
+    <None Remove="Views\Components\Contact\default.cshtml" />
+
+    <Content Include="Views\**\*.*">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+
+    <None Remove="Migrations\package.zip" />
+
+    <None Remove="Views\Components\Pagination\default.cshtml" />
     <EmbeddedResource Include="Migrations\package.zip" />
+
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="12.1.2" />
+    <PackageReference Include="SampleStarterKit.Core" Version="1.0.0" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="4.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../images/logo.png" Pack="true" PackPath="\" />
+    <None Include="../README.md" Pack="true" PackPath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Components\Pagination\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
