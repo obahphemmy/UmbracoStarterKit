@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+@using SampleStarterKit.Core.Extensions;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SampleStarterKit</title>
+    <link rel="stylesheet" href="/samplestarterkit-assets/default.css" />
+</head>
+<body>
+    @RenderBody()
+
+    <p>@Model.GetContentId()</p>
+</body>
+</html>

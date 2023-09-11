@@ -1,0 +1,29 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SampleStarterKitAssetsFilePath>$(MSBuildThisFileDirectory)..\wwwroot\**\*.*</SampleStarterKitAssetsFilePath>
+    <SampleStarterKitViewsFilePath>$(MSBuildThisFileDirectory)..\Views\**\*.*</SampleStarterKitViewsFilePath>
+  </PropertyGroup>
+
+  <Target Name="CopySampleStarterKitAssets" BeforeTargets="Build">
+    <ItemGroup>
+      <SampleStarterKitAssetFiles Include="$(SampleStarterKitAssetsFilePath)" />
+    </ItemGroup>
+    <Message Text="Copying SampleStarterKit Asset files: $(SampleStarterKitAssetsFilesPath) - #@(SampleStarterKitAssetFiles->Count()) files"  Importance="high" />
+    <Copy
+        SourceFiles="@(SampleStarterKitAssetFiles)"
+        DestinationFiles="@(SampleStarterKitAssetFiles->'$(MSBuildProjectDirectory)\wwwroot\%(RecursiveDir)%(Filename)%(Extension)')"
+        SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopySampleStarterKitViews" BeforeTargets="Build">
+    <ItemGroup>
+      <SampleStarterKitViewsFiles Include="$(SampleStarterKitViewsFilePath)" />
+    </ItemGroup>
+    <Message Text="Copying SampleStarterKit Views files: $(SampleStarterKitViewsFilesPath) - #@(SampleStarterKitViewsFiles->Count()) files"  Importance="high" />
+    <Copy
+      SourceFiles="@(SampleStarterKitViewsFiles)"
+      DestinationFiles="@(SampleStarterKitViewsFiles->'$(MSBuildProjectDirectory)\Views\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+  
+</Project>
